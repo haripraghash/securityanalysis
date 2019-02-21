@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\acme.product.dataaccess\acme.product.dataaccess.csproj" />
+    <ProjectReference Include="..\acme.product.domain\acme.product.domain.csproj" />
+    <ProjectReference Include="..\acme.product.dto\acme.product.dto.csproj" />
+  </ItemGroup>
+
+</Project>
