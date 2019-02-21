@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>d5c39d9c-7a72-44f5-9625-67b802cba2c8</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PrepareForBuildDependsOn>
+    </PrepareForBuildDependsOn>
+  </PropertyGroup>
+  <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- vertag<:>start tokens<:>maj.min -->
+  <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
+  <!-- vertag<:>end -->
+  <ItemGroup>
+    <Content Include="localdeploy.ps1" />
+    <Content Include="deploy-productapi.ps1" />
+    <Content Include="templates\azuredeploy.json" />
+    <Content Include="templates\resources\keyvault.json" />
+    <Content Include="templates\resources\app-service-plan-autoscale.json" />
+    <Content Include="templates\resources\app-service-plan.json" />
+    <Content Include="templates\azuredeploy.parameters.json" />
+    <None Include="Deployment.targets">
+      <Visible>False</Visible>
+    </None>
+    <Content Include="Run-script-with-vsts-variables.ps1" />
+    <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <None Include="templates\resources\app-insights.json" />
+    <None Include="templates\resources\sql-db.json" />
+    <None Include="templates\resources\web-app.json" />
+  </ItemGroup>
+  <Target Name="GetReferenceAssemblyPaths" />
+</Project>

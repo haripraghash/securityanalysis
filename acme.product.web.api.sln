@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.web.api", "acme.product.web.api\acme.product.web.api.csproj", "{D158D2AB-22F1-4A1B-BB24-DD5A7F8EC773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.web.api", "acme.product.web.api\acme.product.web.api.csproj", "{D158D2AB-22F1-4A1B-BB24-DD5A7F8EC773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.domain", "acme.product.domain\acme.product.domain.csproj", "{DC1F99CA-0E59-455A-B370-B5687FA8C936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.domain", "acme.product.domain\acme.product.domain.csproj", "{DC1F99CA-0E59-455A-B370-B5687FA8C936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.dto", "acme.product.dto\acme.product.dto.csproj", "{6D861304-DFA1-4699-BDDF-8F30FF37E7CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.dto", "acme.product.dto\acme.product.dto.csproj", "{6D861304-DFA1-4699-BDDF-8F30FF37E7CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.services", "acme.product.services\acme.product.services.csproj", "{8D7D5034-4761-4551-9827-EAD8877A3C8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.services", "acme.product.services\acme.product.services.csproj", "{8D7D5034-4761-4551-9827-EAD8877A3C8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.services.unit.tests", "acme.product.services.unit.tests\acme.product.services.unit.tests.csproj", "{ABEB2A5D-8337-4E89-8FC9-26186E981AFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.services.unit.tests", "acme.product.services.unit.tests\acme.product.services.unit.tests.csproj", "{ABEB2A5D-8337-4E89-8FC9-26186E981AFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "acme.product.dataaccess", "acme.product.dataaccess\acme.product.dataaccess.csproj", "{5C39861D-8BA4-41B1-89D9-0AC40ECDEE27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "acme.product.dataaccess", "acme.product.dataaccess\acme.product.dataaccess.csproj", "{5C39861D-8BA4-41B1-89D9-0AC40ECDEE27}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "acme.product.database", "acme.product.database\acme.product.database.sqlproj", "{F9D2F2D1-AE82-475E-A4C5-B420CDBA708B}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "acme.product.api.provisioning", "acme.product.api.provisioning\acme.product.api.provisioning.deployproj", "{D5C39D9C-7A72-44F5-9625-67B802CBA2C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{F9D2F2D1-AE82-475E-A4C5-B420CDBA708B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9D2F2D1-AE82-475E-A4C5-B420CDBA708B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9D2F2D1-AE82-475E-A4C5-B420CDBA708B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D5C39D9C-7A72-44F5-9625-67B802CBA2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5C39D9C-7A72-44F5-9625-67B802CBA2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5C39D9C-7A72-44F5-9625-67B802CBA2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5C39D9C-7A72-44F5-9625-67B802CBA2C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
