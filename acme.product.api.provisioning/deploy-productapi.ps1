@@ -115,18 +115,14 @@ function Main() {
 	# set application settings for web api
 	$apiAppSettings = @{
 		'KeyVault:Name' = $keyVaultName;
-		'AzureAd:Tenant' = $AadTenantId;
-		'AzureAd:Audience' = $adAppUri;
-		'AzureAd:ClientId' = $adAppClientId;
-		'AzureAd:AadInstance' = 'https://login.microsoftonline.com/{0}';
 		'ApplicationInsights:InstrumentationKey' = $appInsightsInstrumentationKey;
-		'UIAppUrl' = "https://$webUiName.azurewebsites.net";
+		'ASPNETCORE_ENVIRONMENT' = 'Development';
 	}
 
-	if ($IsDevelopment)
-	{
-		$apiAppSettings = $apiAppSettings + @{'ASPNETCORE_ENVIRONMENT' = 'Development'}
-	}
+	#if ($IsDevelopment)
+	#{
+	#	$apiAppSettings = $apiAppSettings + @{'ASPNETCORE_ENVIRONMENT' = 'Development'}
+	#}
 
 	
 	Write-Host "##vso[task.setvariable variable=WebApiAppServiceName;]$webApiName"
