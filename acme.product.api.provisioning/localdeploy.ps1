@@ -1,8 +1,8 @@
 #
 # localdeploy.ps1
 # script can be used for deployment from local pc to Azure
-
 clear
+#Clear-AzureRmContext -Scope Process
 
 if ((Get-AzureRmContext).Subscription.Name -ne "Visual Studio Enterprise")
 {
@@ -11,8 +11,8 @@ if ((Get-AzureRmContext).Subscription.Name -ne "Visual Studio Enterprise")
     Set-AzureRmContext -Subscription Visual Studio Enterprise
 }
 
-$AadAdmin = "harioverhere@hotmail.com"
-$AadPassword = ConvertTo-SecureString "dravid421" -AsPlainText -Force
+$AadAdmin = "..."
+$AadPassword = ConvertTo-SecureString "..." -AsPlainText -Force
 $ResourceGroupLocation = "northeurope"
 $Environment = "dev"
 

@@ -150,9 +150,33 @@
 
     /* SQL DB*/
     "sqlServerName": "[concat('acmeproduct', parameters('shortregion'), parameters('environment'),'sql')]",
-    "sqlDbTemplateName": "sql-db.json"
+    "sqlDbTemplateName": "sql-db.json",
+    
+    /* Azure container Registry */
+    "acrName": "[concat('acmeproduct', parameters('shortregion'), parameters('environment'),'acr')]",
+    "acrTemplateName": "azure-container-registry.json"
   },
   "resources": [
+    /* ACR */
+    {
+      "name": "acr",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2016-09-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":
+            "[concat(parameters('_artifactsLocation'), '/', parameters('_templateFolder'), '/', variables('acrTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "acrName": {
+            "value": "[variables('acrName')]"
+          }
+        }
+      }
+    },
+
     /* SQL db */
     {
       "name": "product-db",
