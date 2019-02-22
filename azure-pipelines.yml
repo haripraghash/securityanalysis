@@ -16,7 +16,7 @@ steps:
 - task: CopyFiles@2
   displayName: Copy provisioning scripts
   inputs:
-    SourceFolder: acme.product.web.api/acme.product.api.provisioning
+    SourceFolder: acme.product.api.provisioning
     TargetFolder: '$(build.artifactstagingdirectory)/iac'
 
 - task: PublishBuildArtifacts@1
