@@ -110,6 +110,7 @@ else {
                                        -ResourceGroupName $ResourceGroupName `
                                        -TemplateFile $TemplateFile `
                                        -TemplateParameterFile $TemplateParametersFile `
+									   @TemplateParameters `
                                        @OptionalParameters `
                                        -Force -Verbose `
                                        -ErrorVariable ErrorMessages
