@@ -13,18 +13,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: CopyFiles@2
-  displayName: Copy provisioning scripts
-  inputs:
-    SourceFolder: acme.product.api.provisioning
-    TargetFolder: '$(build.artifactstagingdirectory)/iac'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish infrastructure artifacts
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)/iac'
-    ArtifactName: iac
-
 - task: DotNetCoreCLI@2
   displayName: Restore nuget
   inputs:
@@ -62,6 +50,19 @@ steps:
      bin\$(BuildConfiguration)\acme.product.database.dacpac
     TargetFolder: '$(build.artifactstagingdirectory)\datamodel'
     flattenFolders: true
+
+- task: CopyFiles@2
+  displayName: Copy provisioning scripts
+  inputs:
+    SourceFolder: acme.product.api.provisioning
+    TargetFolder: '$(build.artifactstagingdirectory)/iac'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish infrastructure artifacts
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/iac'
+    ArtifactName: iac
+
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish .net core artifacts'
