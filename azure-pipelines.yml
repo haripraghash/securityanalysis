@@ -59,7 +59,7 @@ steps:
   inputs:
     SourceFolder: acme.product.database
     Contents: |
-     bin\$(buBuildConfiguration)\acme.product.database.dacpac
+     bin\$(BuildConfiguration)\acme.product.database.dacpac
     TargetFolder: '$(build.artifactstagingdirectory)\datamodel'
     flattenFolders: true
 
