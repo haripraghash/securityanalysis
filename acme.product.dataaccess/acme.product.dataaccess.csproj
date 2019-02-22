@@ -6,16 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\acme.product.domain\acme.product.domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Logging.Debug">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.debug\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Debug.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

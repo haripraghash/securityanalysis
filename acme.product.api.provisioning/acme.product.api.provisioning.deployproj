@@ -35,6 +35,7 @@
     </None>
     <Content Include="Run-script-with-vsts-variables.ps1" />
     <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <None Include="templates\resources\azure-container-registry.json" />
     <None Include="templates\resources\app-insights.json" />
     <None Include="templates\resources\sql-db.json" />
     <None Include="templates\resources\web-app.json" />
