@@ -23,7 +23,7 @@ Param (
 
 	[string] $AppServicePlanSKUName = 'S1',
 
-	# Homepage db
+	# product db
 	[string] $SqlDbEdition = 'Standard',
 
 	[string] $SqlDbTier = 'S1'
@@ -40,6 +40,7 @@ $ArtifactsStagingDirectory = '.\templates'
 
 function Generate-Password ($length = 20, $nonAlphaChars = 5)
 {
+ Write-Host "generating password"
 	Add-Type -AssemblyName System.Web
 	
 	[char[]] $illegalChars = @(':', '/', '\', '@', '''', '"', ';', '.', '+', '#')
@@ -54,7 +55,7 @@ function Generate-Password ($length = 20, $nonAlphaChars = 5)
 			}
 		}
 	} while ($hasIllegalChars)
-
+	Write-Host "generated password"
 	ConvertTo-SecureString $password -AsPlainText -Force
 }
 
@@ -140,5 +141,5 @@ function Main() {
 
 $SqlServerAdminLogin = "productadmin"
 $SqlServerAdminLoginPassword = Generate-Password
-
+Write-Host $sqlServerAdminLoginPassword
 Main
