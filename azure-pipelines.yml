@@ -36,6 +36,7 @@ steps:
   inputs:
     solution: '**\*.sln' 
     #vsVersion: 'latest' # Optional. Options: latest, 16.0, 15.0, 14.0, 12.0, 11.0
+    msbuildArguments: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'
     #platform: # Optional
     configuration: $(BuildConfiguration)
     #clean: false # Optional
@@ -46,13 +47,13 @@ steps:
     #createLogFile: false # Optional
     #logFileVerbosity: 'normal' # Optional. Options: quiet, minimal, normal, detailed, diagnostic
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet publish $(buildConfiguration)'
-  inputs:
-    command: publish
-    publishWebProjects: false
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
-    zipAfterPublish: True
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet publish $(buildConfiguration)'
+#   inputs:
+#     command: publish
+#     publishWebProjects: false
+#     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
+#     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish .net core artifacts'
