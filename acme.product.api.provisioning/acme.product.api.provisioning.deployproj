@@ -30,6 +30,7 @@
     <Content Include="templates\resources\app-service-plan-autoscale.json" />
     <Content Include="templates\resources\app-service-plan.json" />
     <Content Include="templates\azuredeploy.parameters.json" />
+    <None Include="Configure-AppSettings.ps1" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>

@@ -124,6 +124,10 @@ function Main() {
 	#	$apiAppSettings = $apiAppSettings + @{'ASPNETCORE_ENVIRONMENT' = 'Development'}
 	#}
 
+	.\Configure-AppSettings.ps1 `
+	-ResourceGroupName $ResourceGroupName `
+	-WebAppName $webApiName `
+	-AppSettings $apiAppSettings
 	
 	Write-Host "##vso[task.setvariable variable=WebApiAppServiceName;]$webApiName"
 	Write-Host "##vso[task.setvariable variable=ResourceGroupName;]$ResourceGroupName"
