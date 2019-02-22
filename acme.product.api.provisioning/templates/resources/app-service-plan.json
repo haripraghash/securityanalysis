@@ -34,7 +34,7 @@
     },
     "reserved": {
       "type": "bool",
-      "defaultValue": true,
+      "defaultValue": false,
       "metadata": {
         "description": "True for docker containers."
       }
