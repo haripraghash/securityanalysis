@@ -28,8 +28,9 @@ namespace acme.product.web.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<IConfiguration>(Configuration);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<ProductContext>(options => options.UseSqlServer(""));
+            services.AddDbContext<ProductContext>(options => options.UseSqlServer(Configuration["sql-server-connection-string"]));
             services.AddTransient<IProductService, ProductService>();
         }
 
