@@ -49,5 +49,6 @@ $rawParams.GetEnumerator() | Foreach-Object { if ($scriptParameters.Key -contain
 
 
 Write-Host ($params | Out-String)
+Write-Host ($rawParams | Out-String)
 
 & $ScriptPath @params
