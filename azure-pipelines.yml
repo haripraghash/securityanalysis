@@ -36,7 +36,6 @@ steps:
   inputs:
     solution: '**\*.sln' 
     #vsVersion: 'latest' # Optional. Options: latest, 16.0, 15.0, 14.0, 12.0, 11.0
-    #msbuildArgs: # Optional
     #platform: # Optional
     configuration: $(BuildConfiguration)
     #clean: false # Optional
@@ -51,8 +50,8 @@ steps:
   displayName: 'dotnet publish $(buildConfiguration)'
   inputs:
     command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    publishWebProjects: false
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
