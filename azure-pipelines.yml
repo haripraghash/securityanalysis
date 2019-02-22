@@ -54,6 +54,14 @@ steps:
 #     publishWebProjects: false
 #     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
 #     zipAfterPublish: True
+- task: CopyFiles@2
+  displayName: Copy dacpac to artifacts
+  inputs:
+    SourceFolder: acme.product.database
+    Contents: |
+     bin\acme.product.database.dacpac
+    TargetFolder: '$(build.artifactstagingdirectory)\datamodel'
+    flattenFolders: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish .net core artifacts'
