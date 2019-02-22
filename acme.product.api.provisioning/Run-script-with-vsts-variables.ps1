@@ -7,7 +7,7 @@ Set-Location $PSScriptRoot
 
 $rawParams = @{}
 $params = @{}
-
+Write-Host @secretVariables
 # Add all environment variables to the parameters hashtable
 $envs = (Get-ChildItem env:)
 
