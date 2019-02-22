@@ -25,6 +25,12 @@ steps:
     PathtoPublish: '$(build.artifactstagingdirectory)/iac'
     ArtifactName: iac
 
+- task: DotNetCoreCLI@2
+  displayName: Restore nuget
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
 - task: VSBuild@1
   displayName: Build Solution
   inputs:
