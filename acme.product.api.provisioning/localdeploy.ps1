@@ -4,11 +4,11 @@
 clear
 #Clear-AzureRmContext -Scope Process
 
-if ((Get-AzureRmContext).Subscription.Name -ne "Visual Studio Enterprise")
+if ((Get-AzContext).Subscription.Name -ne "Visual Studio Enterprise")
 {
     Login-AzureRmAccount
 
-    Set-AzureRmContext -Subscription Visual Studio Enterprise
+    Set-AzContext -Subscription Visual Studio Enterprise
 }
 
 $AadAdmin = "..."
