@@ -12,7 +12,7 @@ stages:
 - stage: dev
   displayName: Dev
   pool:
-   vmImage: 'ubunutu-latest'
+   vmImage: 'ubuntu-latest'
   jobs:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
