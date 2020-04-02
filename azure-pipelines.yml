@@ -6,20 +6,23 @@ trigger:
   - master
 
 variables:
-  buildConfiguration: 'Release'
+  - group: azuresubscription
+  - name: buildConfiguration
+    value: 'Release'
 
 stages:
 - stage: dev
   displayName: Dev
+  variables:
+    ENV: "dev"
+    REGION: "eastus"
   pool:
    vmImage: 'ubuntu-latest'
   jobs:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
     steps:
-      - bash: ls
-        displayName: "List the directories"
-      - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadPassword "test" -ResourceGroupLocation "eastus"  -environment "dev"
+      - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadAdmin $(aadAdmin) -AadPassword $(aadPassword) -ResourceGroupLocation $(REGION)  -environment $(ENV)
         displayName: "Run powershell command"
 
   
