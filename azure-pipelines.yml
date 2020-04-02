@@ -23,6 +23,13 @@ stages:
     displayName: "Provision Azure Infrastructure"
     steps:
     - task: AzurePowerShell@4
+      displayName: "Install Az Modules"
+      inputs:
+        azureSubscription: "securityanalysis"
+        scriptType: inlineScript
+        inline: Install-Module -Name Az -Repository PSGallery -Force
+        failOnStandardError: true
+    - task: AzurePowerShell@4
       displayName: "Run powershell script to provision azure infra"
       inputs:
         azureSubscription: "securityanalysis"
