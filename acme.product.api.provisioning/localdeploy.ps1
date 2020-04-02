@@ -2,7 +2,6 @@
 # localdeploy.ps1
 # script can be used for deployment from local pc to Azure
 clear
-#Clear-AzureRmContext -Scope Process
 
 if ((Get-AzContext).Subscription.Name -ne "Visual Studio Enterprise")
 {
