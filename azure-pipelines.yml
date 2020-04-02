@@ -30,6 +30,7 @@ stages:
       inputs:
         azureSubscription: "securityanalysis"
         scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+        errorActionPreference: continue
         #failOnStandardError: true
         scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
       # - powershell: |
