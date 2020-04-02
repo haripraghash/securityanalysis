@@ -23,7 +23,7 @@ stages:
     displayName: "Provision Azure Infrastructure"
     steps:
       - powershell: |
-            $User = $(aadAdmin) 
+            $User = "$(aadAdmin)" 
             $PWord = ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force  
             $tenant = $(tenantid) 
             $subscription = $(subscriptionid) 
