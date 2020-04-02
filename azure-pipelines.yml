@@ -17,7 +17,9 @@ stages:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
     steps:
-      - powershell: $(build.artifactstagingdirectory)/acme.product.api.provisioning/deploy-productapi.ps1 -AadPassword "test" -ResourceGroupLocation "eastus"  -environment "dev"
+      - bash: ls
+        displayName: "List the directories"
+      - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadPassword "test" -ResourceGroupLocation "eastus"  -environment "dev"
         displayName: "Run powershell command"
 
   
