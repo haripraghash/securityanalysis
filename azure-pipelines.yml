@@ -12,7 +12,6 @@ stages:
 - stage: dev
   displayName: Dev
   pool:
-   name: ubuntupool
    vmImage: 'ubunutu-latest'
   jobs:
   - job: provisionazureinfrastructure
