@@ -22,16 +22,22 @@ stages:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
     steps:
-      - powershell: |
-            $User = "$(aadAdmin)" 
-            $tenant = "$(tenantid)"
-            $subscription = "$(subscriptionid)" 
-            $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,(ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force) 
-            Connect-AzAccount -Credential $Credential -Tenant $tenant -Subscription $subscription 
+    - task: AzurePowerShell@4
+      displayName: "Login to Azure RM"
+      inputs:
+        azureSubscription: "securityanalysis"
+        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+        failOnStandardError: true
+      # - powershell: |
+      #       $User = "$(aadAdmin)" 
+      #       $tenant = "$(tenantid)"
+      #       $subscription = "$(subscriptionid)" 
+      #       $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,(ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force) 
+      #       Connect-AzAccount -Credential $Credential -Tenant $tenant -Subscription $subscription 
 
-        displayName: "Login to azure account"
-      - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
-        displayName: "Run powershell command"
+      #   displayName: "Login to azure account"
+      # - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+      #   displayName: "Run powershell command"
 
   
   
