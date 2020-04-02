@@ -23,7 +23,7 @@ stages:
     displayName: "Provision Azure Infrastructure"
     steps:
     - script: |
-        sudo /usr/bin/pwsh -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -File "./acme.product.api.provisioning/install-az-modules.ps1"
+        sudo /usr/bin/pwsh -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -File "$(Build.Repository.LocalPath)/acme.product.api.provisioning/install-az-modules.ps1"
       displayName: "Install Az Modules"
     - task: AzurePowerShell@4
       displayName: "Run powershell script to provision azure infra"
