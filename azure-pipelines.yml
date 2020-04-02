@@ -24,10 +24,9 @@ stages:
     steps:
       - powershell: |
             $User = "$(aadAdmin)" 
-            $PWord = "ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force"
             $tenant = "$(tenantid)"
             $subscription = "$(subscriptionid)" 
-            $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,$PWord 
+            $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,(ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force) 
             Connect-AzAccount -Credential $Credential -Tenant $tenant -Subscription $subscription 
 
         displayName: "Login to azure account"
