@@ -33,30 +33,14 @@ $ErrorActionPreference = 'Stop'
 
 Set-Location $PSScriptRoot
 
-$AadTenantId = (Get-AzureRmContext).Tenant.Id
+$AadTenantId = (Get-azContext).Tenant.Id
 $ArtifactsStorageAccountName = $ResourceNamePrefix + $Environment + 'artifacts'
 $ArtifactsStorageContainerName = 'artifacts'
 $ArtifactsStagingDirectory = '.\templates'
 
 function Generate-Password ($length = 20, $nonAlphaChars = 5)
 {
- Write-Host "generating password"
-	Add-Type -AssemblyName System.Web
-	
-	[char[]] $illegalChars = @(':', '/', '\', '@', '''', '"', ';', '.', '+', '#')
-
-	do {
-		$hasIllegalChars = $false
-		$password = [System.Web.Security.Membership]::GeneratePassword($length, $nonAlphaChars)
-
-		$illegalChars | ForEach-Object {
-			if ($password -like "*$_*") {
-				$hasIllegalChars = $true
-			}
-		}
-	} while ($hasIllegalChars)
-	Write-Host "generated password"
-	ConvertTo-SecureString $password -AsPlainText -Force
+	ConvertTo-SecureString "test#123test" -AsPlainText -Force
 }
 
 function CreateResourceGroup() {

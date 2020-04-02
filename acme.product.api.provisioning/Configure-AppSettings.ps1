@@ -6,7 +6,7 @@ Param(
 	[hashtable] [Parameter(Mandatory = $true)] $AppSettings
 )
 
-$webApp = Get-AzureRmWebApp -ResourceGroupName $ResourceGroupName `
+$webApp = Get-AzWebApp -ResourceGroupName $ResourceGroupName `
     -Name $WebAppName
 
 if (!$webApp) {
@@ -36,6 +36,6 @@ if($ClientSecret){
 Write-Host "New application settings"
 $hash
 
-Set-AzureRmWebApp -ResourceGroupName $ResourceGroupName `
+Set-AzWebApp -ResourceGroupName $ResourceGroupName `
     -Name $WebAppName `
     -AppSettings $hash

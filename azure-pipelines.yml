@@ -2,69 +2,82 @@
 # Build and test ASP.NET Core projects targeting .NET Core.
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- master
-
-pool:
-  vmImage: 'vs2017-win2016'
+  - master
 
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: DotNetCoreCLI@2
-  displayName: Restore nuget
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
+stages:
+- stage: dev
+  displayName: Dev
+  pool:
+   name: ubuntupool
+   vmImage: 'ubunutu-latest'
+  jobs:
+  - job: provisionazureinfrastructure
+    displayName: "Provision Azure Infrastructure"
+    steps:
+      - powershell: $(build.artifactstagingdirectory)/acme.product.api.provisioning/deploy-productapi.ps1 -AadPassword "test" -ResourceGroupLocation "eastus"  -environment "dev"
+        displayName: "Run powershell command"
 
-- task: VSBuild@1
-  displayName: Build Solution
-  inputs:
-    solution: '**\*.sln' 
-    #vsVersion: 'latest' # Optional. Options: latest, 16.0, 15.0, 14.0, 12.0, 11.0
-    msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'
-    #platform: # Optional
-    configuration: $(BuildConfiguration)
-    #clean: false # Optional
-    #maximumCpuCount: false # Optional
-    #restoreNugetPackages: false # Optional
-    #msbuildArchitecture: 'x86' # Optional. Options: x86, x64
-    #logProjectEvents: true # Optional
-    #createLogFile: false # Optional
-    #logFileVerbosity: 'normal' # Optional. Options: quiet, minimal, normal, detailed, diagnostic
+  
+  
 
+
+# steps:
 # - task: DotNetCoreCLI@2
-#   displayName: 'dotnet publish $(buildConfiguration)'
+#   displayName: Restore nuget
 #   inputs:
-#     command: publish
-#     publishWebProjects: false
-#     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
-#     zipAfterPublish: True
-- task: CopyFiles@2
-  displayName: Copy dacpac to artifacts
-  inputs:
-    SourceFolder: acme.product.database
-    Contents: |
-     bin\$(BuildConfiguration)\acme.product.database.dacpac
-    TargetFolder: '$(build.artifactstagingdirectory)\datamodel'
-    flattenFolders: true
+#     command: 'restore'
+#     projects: '**/*.csproj'
 
-- task: CopyFiles@2
-  displayName: Copy provisioning scripts
-  inputs:
-    SourceFolder: acme.product.api.provisioning
-    TargetFolder: '$(build.artifactstagingdirectory)/iac'
+# - task: VSBuild@1
+#   displayName: Build Solution
+#   inputs:
+#     solution: '**\*.sln' 
+#     #vsVersion: 'latest' # Optional. Options: latest, 16.0, 15.0, 14.0, 12.0, 11.0
+#     msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'
+#     #platform: # Optional
+#     configuration: $(BuildConfiguration)
+#     #clean: false # Optional
+#     #maximumCpuCount: false # Optional
+#     #restoreNugetPackages: false # Optional
+#     #msbuildArchitecture: 'x86' # Optional. Options: x86, x64
+#     #logProjectEvents: true # Optional
+#     #createLogFile: false # Optional
+#     #logFileVerbosity: 'normal' # Optional. Options: quiet, minimal, normal, detailed, diagnostic
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish infrastructure artifacts
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)/iac'
-    ArtifactName: iac
+# # - task: DotNetCoreCLI@2
+# #   displayName: 'dotnet publish $(buildConfiguration)'
+# #   inputs:
+# #     command: publish
+# #     publishWebProjects: false
+# #     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)\webapps'
+# #     zipAfterPublish: True
+# - task: CopyFiles@2
+#   displayName: Copy dacpac to artifacts
+#   inputs:
+#     SourceFolder: acme.product.database
+#     Contents: |
+#      bin\$(BuildConfiguration)\acme.product.database.dacpac
+#     TargetFolder: '$(build.artifactstagingdirectory)\datamodel'
+#     flattenFolders: true
+
+# - task: CopyFiles@2
+#   displayName: Copy provisioning scripts
+#   inputs:
+#     SourceFolder: acme.product.api.provisioning
+#     TargetFolder: '$(build.artifactstagingdirectory)/iac'
+
+# - task: PublishBuildArtifacts@1
+#   displayName: Publish infrastructure artifacts
+#   inputs:
+#     PathtoPublish: '$(build.artifactstagingdirectory)/iac'
+#     ArtifactName: iac
 
 
-- task: PublishBuildArtifacts@1
-  displayName: 'publish .net core artifacts'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+# - task: PublishBuildArtifacts@1
+#   displayName: 'publish .net core artifacts'
+#   inputs:
+#     PathtoPublish: '$(build.artifactstagingdirectory)'

@@ -10,9 +10,9 @@ if ((Get-AzContext).Subscription.Name -ne "Visual Studio Enterprise")
     Set-AzContext -Subscription Visual Studio Enterprise
 }
 
-$AadAdmin = "..."
-$AadPassword = ConvertTo-SecureString "..." -AsPlainText -Force
-$ResourceGroupLocation = "northeurope"
+$AadAdmin = "harioverhere@hotmail.com"
+$AadPassword = ConvertTo-SecureString "dravid421" -AsPlainText -Force
+$ResourceGroupLocation = "eastus"
 $Environment = "dev"
 
 .\deploy-productapi.ps1 -AadAdmin $AadAdmin `
