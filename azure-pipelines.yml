@@ -55,13 +55,16 @@ stages:
          #zipAfterPublish: false
          #modifyOutputPath: true
     - task: DotNetCoreCLI@2
-      displayName: 'Restore'
+      displayName: 'Build'
       inputs:
             command: build
-            #publishWebProjects: false
-            #arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
-            #zipAfterPublish: false
-            #modifyOutputPath: true
+            projects: |
+              ./acme.product.dto/acme.product.dto.csproj
+              ./acme.product.dataaccess/acme.product.dataaccess.csproj
+              ./acme.product.domain/acme.product.domain.csproj
+              ./acme.product.services/acme.product.services.csproj
+              ./acme.product.web.api/acme.product.web.api.csproj
+              ./acme.product.services.unit.tests/acme.product.unit.tests.csproj
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish with $(buildConfiguration) configuration'
       inputs:
