@@ -43,7 +43,7 @@ stages:
       sqlServerName: 'acmeproducteundevsql'
       sqlServerDbName: 'productdb'
       sqlServerUserName: 'productadmin'
-      sqlServerPassword: 'test'
+      sqlServerPassword: 'test#123test'
       # sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
       # sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
       # sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
