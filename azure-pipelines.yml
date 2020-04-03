@@ -30,7 +30,7 @@ stages:
       inputs:
         azureSubscription: "securityanalysis"
         scriptType: inlineScript
-        inline: Connect-AzAccount -Tenant $(tenantid)
+        inline: get-azcontext
         azurePowerShellVersion: LatestVersion
         # scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
         # errorActionPreference: continue
