@@ -29,10 +29,12 @@ stages:
       displayName: "Run powershell script to provision azure infra"
       inputs:
         azureSubscription: "securityanalysis"
-        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
-        errorActionPreference: continue
-        #failOnStandardError: true
-        scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+        scriptType: inlineScript
+        inline: Connect-AzAccount -Tenant $(tenantid)
+        # scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+        # errorActionPreference: continue
+        # #failOnStandardError: true
+        # scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
       # - powershell: |
       #       $User = "$(aadAdmin)" 
       #       $tenant = "$(tenantid)"
