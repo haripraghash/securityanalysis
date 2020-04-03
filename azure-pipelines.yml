@@ -31,16 +31,42 @@ stages:
         errorActionPreference: stop
         failOnStandardError: true
         scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
-      # - powershell: |
-      #       $User = "$(aadAdmin)" 
-      #       $tenant = "$(tenantid)"
-      #       $subscription = "$(subscriptionid)" 
-      #       $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $User,(ConvertTo-SecureString -String $(aadPassword) -AsPlainText -Force) 
-      #       Connect-AzAccount -Credential $Credential -Tenant $tenant -Subscription $subscription 
+  - job: deployazuresqlschema
+    displayName: "Deploy Azure Sql Schema"
+    dependsOn: provisionazureinfrastructure
+    condition: succeeded()
+    pool:
+      vmImage: windows-latest
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish with $(buildConfiguration) configuration'
+      inputs:
+       command: publish
+       publishWebProjects: false
+       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
+       zipAfterPublish: True
+       
+    - task: CopyFiles@2
+      displayName: Copy dacpac to artifacts
+      inputs:
+        SourceFolder: acme.product.database
+        Contents: |
+           bin/$(BuildConfiguration)/acme.product.database.dacpac
+        TargetFolder: '$(build.artifactstagingdirectory)/datamodel'
+        flattenFolders: true
 
-      #   displayName: "Login to azure account"
-      # - powershell: ./acme.product.api.provisioning/deploy-productapi.ps1 -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
-      #   displayName: "Run powershell command"
+    - task: SqlAzureDacpacDeployment@1
+      displayName: "Deploy Azure Sql Database Schema"
+      condition: 
+      inputs:
+        azureSubscription: "securityanalysis"
+        serverName: "$(SqlServerName).database.windows.net"
+        databaseName: $(SqlServerDbName)
+        sqlUsername: $(SqlServerAppAdminLogin)
+        sqlPassword: $(SqlServerAppAdminLoginPassword)
+        deploymentAction: 'Publish'
+        dacpacFile: $(build.artifactstagingdirectory)/datamodel/acme.product.database.dacpac
+          
 
   
   
