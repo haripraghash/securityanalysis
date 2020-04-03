@@ -73,10 +73,7 @@ function CreateResourceGroup() {
 }
 
 function Main() {
-	Write-Host "sql pass word $sqlServerAdminLoginPassword"
-	$BSTR1 = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sqlServerAdminLoginPassword)
-	$sqlServerAdminLoginPasswordPlain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR1)
-	Write-Host "sql pass word plan $sqlServerAdminLoginPasswordPlain"
+	
 	$deployment = CreateResourceGroup
 	$deployment
 
@@ -123,7 +120,7 @@ function Main() {
 	Write-Host "##vso[task.setvariable variable=SqlServerName;isOutput=true]$SqlServerName"
 	Write-Host "##vso[task.setvariable variable=SqlServerDbName;isOutput=true]$SqlServerDbName"
 	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLogin;isOutput=true]$sqlServerAdminLogin"
-	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword;isOutput=true]$sqlServerAdminLoginPasswordPlain"
+	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword;isOutput=true]test#123test"
 }
 
 $SqlServerAdminLogin = "productadmin"
