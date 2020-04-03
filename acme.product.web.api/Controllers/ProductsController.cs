@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using acme.product.dto;
 using acme.product.services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace acme.product.web.api.Controllers
 {
