@@ -16,6 +16,7 @@
   <PropertyGroup>
     <PrepareForBuildDependsOn>
     </PrepareForBuildDependsOn>
+    <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
   <Import Condition=" Exists('Deployment.targets') " Project="Deployment.targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
