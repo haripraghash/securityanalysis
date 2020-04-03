@@ -21,23 +21,23 @@ stages:
   pool:
    vmImage: 'ubuntu-latest'
   jobs:
-  # - job: provisionazureinfrastructure
-  #   displayName: "Provision Azure Infrastructure"
+  - job: provisionazureinfrastructure
+    displayName: "Provision Azure Infrastructure"
     
-  #   steps:
-  #   - task: AzurePowerShell@4
-  #     displayName: "Run powershell script to provision azure infra"
-  #     inputs:
-  #       azureSubscription: "securityanalysis"
-  #       azurePowerShellVersion: LatestVersion
-  #       scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
-  #       errorActionPreference: stop
-  #       failOnStandardError: true
-  #       scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+    steps:
+    - task: AzurePowerShell@4
+      displayName: "Run powershell script to provision azure infra"
+      inputs:
+        azureSubscription: "securityanalysis"
+        azurePowerShellVersion: LatestVersion
+        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+        errorActionPreference: stop
+        failOnStandardError: true
+        scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
   - job: deployazuresqlschema
     displayName: "Deploy Azure Sql Schema"
-    #dependsOn: provisionazureinfrastructure
-    #condition: succeeded()
+    dependsOn: provisionazureinfrastructure
+    condition: succeeded()
     pool:
       vmImage: windows-latest
     steps:
@@ -50,21 +50,7 @@ stages:
       displayName: 'Restore'
       inputs:
          command: restore
-         #publishWebProjects: false
-         #arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
-         #zipAfterPublish: false
-         #modifyOutputPath: true
-    - task: DotNetCoreCLI@2
-      displayName: 'Build'
-      inputs:
-            command: build
-            projects: |
-              ./acme.product.dto/acme.product.dto.csproj
-              ./acme.product.dataaccess/acme.product.dataaccess.csproj
-              ./acme.product.domain/acme.product.domain.csproj
-              ./acme.product.services/acme.product.services.csproj
-              ./acme.product.web.api/acme.product.web.api.csproj
-              ./acme.product.services.unit.tests/acme.product.unit.tests.csproj
+
     - task: VSBuild@1
       displayName: Build Solution
       inputs:
