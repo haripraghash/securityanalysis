@@ -21,33 +21,29 @@ stages:
   pool:
    vmImage: 'ubuntu-latest'
   jobs:
-  # - job: provisionazureinfrastructure
-  #   displayName: "Provision Azure Infrastructure"
+  - job: provisionazureinfrastructure
+    displayName: "Provision Azure Infrastructure"
     
-  #   steps:
-  #   - task: AzurePowerShell@4
-  #     name: deployazureinfra
-  #     displayName: "Run powershell script to provision azure infra"
-  #     inputs:
-  #       azureSubscription: "securityanalysis"
-  #       azurePowerShellVersion: LatestVersion
-  #       scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
-  #       errorActionPreference: stop
-  #       failOnStandardError: true
-  #       scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+    steps:
+    - task: AzurePowerShell@4
+      name: deployazureinfra
+      displayName: "Run powershell script to provision azure infra"
+      inputs:
+        azureSubscription: "securityanalysis"
+        azurePowerShellVersion: LatestVersion
+        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+        errorActionPreference: stop
+        failOnStandardError: true
+        scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
   - job: deployazuresqlschema
     displayName: "Deploy Azure Sql Schema"
-    #dependsOn: provisionazureinfrastructure
-    #condition: succeeded()
+    dependsOn: provisionazureinfrastructure
+    condition: succeeded()
     variables:
-      sqlServerName: 'acmeproducteundevsql'
-      sqlServerDbName: 'productdb'
-      sqlServerUserName: 'productadmin'
-      sqlServerPassword: 'test#123test'
-      # sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
-      # sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
-      # sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
-      # sqlServerPassword: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLoginPassword'] ]
+      sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
+      sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
+      sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
+      sqlServerPassword: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLoginPassword'] ]
     pool:
       vmImage: windows-latest
     steps:
@@ -68,30 +64,6 @@ stages:
         vsVersion: 'latest'
         msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
         configuration: $(BuildConfiguration)
-                  
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet publish with $(buildConfiguration) configuration'
-    #   inputs:
-    #    command: publish
-    #    publishWebProjects: false
-    #    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
-    #    zipAfterPublish: false
-    #    modifyOutputPath: true
-       
-    # - task: CopyFiles@2
-    #   displayName: Copy dacpac to artifacts
-    #   inputs:
-    #     SourceFolder: acme.product.database
-    #     Contents: |
-    #        bin/$(BuildConfiguration)/acme.product.database.dacpac
-    #     TargetFolder: '$(build.artifactstagingdirectory)/datamodel'
-    #     flattenFolders: true
-    # - task: Bash@3
-    #   displayName: "List contents"
-    #   inputs:
-    #     script: |
-    #       cd $(build.artifactstagingdirectory)\datamodel 
-    #       ll
 
     - task: SqlAzureDacpacDeployment@1
       displayName: "Deploy Azure Sql Database Schema"
