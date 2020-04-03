@@ -1,0 +1,137 @@
+2020-04-03T14:47:49.5991419Z ##[debug]Popula***ing Reposi***orySourceLoca***ion proper***y for module SqlServer.
+2020-04-03T14:47:49.5993896Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SqlServer\21.1.18218\sqlno***ebook.psm1'.
+2020-04-03T14:47:49.5996120Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SqlServer\21.1.18218\SqlServer.psm1'.
+2020-04-03T14:47:49.6534193Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\SQLServer.psd1'.
+2020-04-03T14:47:49.6537916Z ##[debug]Popula***ing Reposi***orySourceLoca***ion proper***y for module SQLServer.
+2020-04-03T14:47:49.6540150Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\sqlno***ebook.psm1'.
+2020-04-03T14:47:49.6652284Z ##[debug]Expor***ing func***ion 'Invoke-SqlNo***ebook'.
+2020-04-03T14:47:49.6679179Z ##[debug]Impor***ing func***ion 'Invoke-SqlNo***ebook'.
+2020-04-03T14:47:49.6704471Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\SqlServer.psm1'.
+2020-04-03T14:47:49.8660159Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\Microsof***.SqlServer.Managemen***.PSSnapins.dll'.
+2020-04-03T14:47:50.0384561Z ##[debug]Impor***ing cmdle*** 'Add-SqlColumnEncryp***ionKeyValue'.
+2020-04-03T14:47:50.0412297Z ##[debug]Impor***ing cmdle*** 'Comple***e-SqlColumnMas***erKeyRo***a***ion'.
+2020-04-03T14:47:50.0438734Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlColumnEncryp***ionKey'.
+2020-04-03T14:47:50.0465998Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlColumnMas***erKey'.
+2020-04-03T14:47:50.0495875Z ##[debug]Impor***ing cmdle*** 'Add-SqlAzureAu***hen***ica***ionCon***ex***'.
+2020-04-03T14:47:50.0530220Z ##[debug]Impor***ing cmdle*** 'New-SqlColumnEncryp***ionKeyEncryp***edValue'.
+2020-04-03T14:47:50.0557390Z ##[debug]Impor***ing cmdle*** 'New-SqlColumnEncryp***ionSe***ings'.
+2020-04-03T14:47:50.0583466Z ##[debug]Impor***ing cmdle*** 'New-SqlColumnMas***erKeySe***ings'.
+2020-04-03T14:47:50.0615791Z ##[debug]Impor***ing cmdle*** 'New-SqlCspColumnMas***erKeySe***ings'.
+2020-04-03T14:47:50.0688836Z ##[debug]Impor***ing cmdle*** 'New-SqlCngColumnMas***erKeySe***ings'.
+2020-04-03T14:47:50.0760489Z ##[debug]Impor***ing cmdle*** 'Remove-SqlColumnEncryp***ionKey'.
+2020-04-03T14:47:50.0804115Z ##[debug]Impor***ing cmdle*** 'Remove-SqlColumnEncryp***ionKeyValue'.
+2020-04-03T14:47:50.0840703Z ##[debug]Impor***ing cmdle*** 'Remove-SqlColumnMas***erKey'.
+2020-04-03T14:47:50.0868173Z ##[debug]Impor***ing cmdle*** 'Invoke-SqlColumnMas***erKeyRo***a***ion'.
+2020-04-03T14:47:50.0925447Z ##[debug]Impor***ing cmdle*** 'Se***-SqlColumnEncryp***ion'.
+2020-04-03T14:47:50.0979866Z ##[debug]Impor***ing cmdle*** 'New-SqlAzureKeyVaul***ColumnMas***erKeySe***ings'.
+2020-04-03T14:47:50.1022447Z ##[debug]Impor***ing cmdle*** 'New-SqlColumnEncryp***ionKey'.
+2020-04-03T14:47:50.1060937Z ##[debug]Impor***ing cmdle*** 'New-SqlColumnMas***erKey'.
+2020-04-03T14:47:50.1099235Z ##[debug]Impor***ing cmdle*** 'New-SqlCer***ifica***eS***oreColumnMas***erKeySe***ings'.
+2020-04-03T14:47:50.1139278Z ##[debug]Impor***ing cmdle*** 'Backup-SqlDa***abase'.
+2020-04-03T14:47:50.1191093Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlBackupHis***ory'.
+2020-04-03T14:47:50.1244783Z ##[debug]Impor***ing cmdle*** 'Res***ore-SqlDa***abase'.
+2020-04-03T14:47:50.1295105Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlSensi***ivi***yClassifica***ion'.
+2020-04-03T14:47:50.1364361Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlSensi***ivi***yRecommenda***ions'.
+2020-04-03T14:47:50.1394075Z ##[debug]Impor***ing cmdle*** 'Remove-SqlSensi***ivi***yClassifica***ion'.
+2020-04-03T14:47:50.1420386Z ##[debug]Impor***ing cmdle*** 'Se***-SqlSensi***ivi***yClassifica***ion'.
+2020-04-03T14:47:50.1446488Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlErrorLog'.
+2020-04-03T14:47:50.1476278Z ##[debug]Impor***ing cmdle*** 'Se***-SqlErrorLog'.
+2020-04-03T14:47:50.1502512Z ##[debug]Impor***ing cmdle*** 'Add-SqlAvailabili***yDa***abase'.
+2020-04-03T14:47:50.1529802Z ##[debug]Impor***ing cmdle*** 'Add-SqlAvailabili***yGroupLis***enerS***a***icIp'.
+2020-04-03T14:47:50.1555452Z ##[debug]Impor***ing cmdle*** 'Disable-SqlAlwaysOn'.
+2020-04-03T14:47:50.1581598Z ##[debug]Impor***ing cmdle*** 'Enable-SqlAlwaysOn'.
+2020-04-03T14:47:50.1607386Z ##[debug]Impor***ing cmdle*** 'Swi***ch-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.1674707Z ##[debug]Impor***ing cmdle*** 'Revoke-SqlAvailabili***yGroupCrea***eAnyDa***abase'.
+2020-04-03T14:47:50.1703562Z ##[debug]Impor***ing cmdle*** 'Se***-SqlAvailabili***yReplicaRoleToSecondary'.
+2020-04-03T14:47:50.1735570Z ##[debug]Impor***ing cmdle*** 'Gran***-SqlAvailabili***yGroupCrea***eAnyDa***abase'.
+2020-04-03T14:47:50.1761546Z ##[debug]Impor***ing cmdle*** 'Join-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.1793892Z ##[debug]Impor***ing cmdle*** 'New-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.1848873Z ##[debug]Impor***ing cmdle*** 'New-SqlAvailabili***yGroupLis***ener'.
+2020-04-03T14:47:50.1875497Z ##[debug]Impor***ing cmdle*** 'New-SqlAvailabili***yReplica'.
+2020-04-03T14:47:50.1901325Z ##[debug]Impor***ing cmdle*** 'New-SqlHADREndpoin***'.
+2020-04-03T14:47:50.1927724Z ##[debug]Impor***ing cmdle*** 'Remove-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.1953016Z ##[debug]Impor***ing cmdle*** 'Remove-SqlAvailabili***yDa***abase'.
+2020-04-03T14:47:50.1980092Z ##[debug]Impor***ing cmdle*** 'Remove-SqlAvailabili***yReplica'.
+2020-04-03T14:47:50.2006458Z ##[debug]Impor***ing cmdle*** 'Resume-SqlAvailabili***yDa***abase'.
+2020-04-03T14:47:50.2032649Z ##[debug]Impor***ing cmdle*** 'Se***-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.2061009Z ##[debug]Impor***ing cmdle*** 'Se***-SqlAvailabili***yGroupLis***ener'.
+2020-04-03T14:47:50.2087688Z ##[debug]Impor***ing cmdle*** 'Se***-SqlAvailabili***yReplica'.
+2020-04-03T14:47:50.2119213Z ##[debug]Impor***ing cmdle*** 'Se***-SqlHADREndpoin***'.
+2020-04-03T14:47:50.2161400Z ##[debug]Impor***ing cmdle*** 'Suspend-SqlAvailabili***yDa***abase'.
+2020-04-03T14:47:50.2189522Z ##[debug]Impor***ing cmdle*** 'Tes***-SqlAvailabili***yGroup'.
+2020-04-03T14:47:50.2215429Z ##[debug]Impor***ing cmdle*** 'Tes***-SqlAvailabili***yReplica'.
+2020-04-03T14:47:50.2244500Z ##[debug]Impor***ing cmdle*** 'Tes***-SqlDa***abaseReplicaS***a***e'.
+2020-04-03T14:47:50.2270575Z ##[debug]Impor***ing cmdle*** 'Add-SqlFirewallRule'.
+2020-04-03T14:47:50.2298635Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlDa***abase'.
+2020-04-03T14:47:50.2326307Z ##[debug]Impor***ing cmdle*** 'Remove-SqlFirewallRule'.
+2020-04-03T14:47:50.2354149Z ##[debug]Impor***ing cmdle*** 'Se***-SqlAu***hen***ica***ionMode'.
+2020-04-03T14:47:50.2382698Z ##[debug]Impor***ing cmdle*** 'Se***-SqlNe***workConfigura***ion'.
+2020-04-03T14:47:50.2411498Z ##[debug]Impor***ing cmdle*** 'S***ar***-SqlIns***ance'.
+2020-04-03T14:47:50.2437672Z ##[debug]Impor***ing cmdle*** 'S***op-SqlIns***ance'.
+2020-04-03T14:47:50.2466395Z ##[debug]Impor***ing cmdle*** 'Invoke-PolicyEvalua***ion'.
+2020-04-03T14:47:50.2494369Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***'.
+2020-04-03T14:47:50.2522121Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***Job'.
+2020-04-03T14:47:50.2550921Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***JobHis***ory'.
+2020-04-03T14:47:50.2588572Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***JobS***ep'.
+2020-04-03T14:47:50.2614413Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***JobSchedule'.
+2020-04-03T14:47:50.2638031Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAgen***Schedule'.
+2020-04-03T14:47:50.2673405Z ##[debug]Impor***ing cmdle*** 'Save-SqlMigra***ionRepor***'.
+2020-04-03T14:47:50.2738543Z ##[debug]Impor***ing cmdle*** 'Read-SqlTableDa***a'.
+2020-04-03T14:47:50.2765316Z ##[debug]Impor***ing cmdle*** 'Read-SqlViewDa***a'.
+2020-04-03T14:47:50.2795539Z ##[debug]Impor***ing cmdle*** 'Wri***e-SqlTableDa***a'.
+2020-04-03T14:47:50.2822849Z ##[debug]Impor***ing cmdle*** 'Invoke-Sqlcmd'.
+2020-04-03T14:47:50.2849240Z ##[debug]Impor***ing cmdle*** 'Add-SqlLogin'.
+2020-04-03T14:47:50.2878247Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlLogin'.
+2020-04-03T14:47:50.2904301Z ##[debug]Impor***ing cmdle*** 'Remove-SqlLogin'.
+2020-04-03T14:47:50.2932465Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlSmar***Admin'.
+2020-04-03T14:47:50.2958554Z ##[debug]Impor***ing cmdle*** 'Se***-SqlSmar***Admin'.
+2020-04-03T14:47:50.3030045Z ##[debug]Impor***ing cmdle*** 'Tes***-SqlSmar***Admin'.
+2020-04-03T14:47:50.3047472Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlCreden***ial'.
+2020-04-03T14:47:50.3073993Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlIns***ance'.
+2020-04-03T14:47:50.3099961Z ##[debug]Impor***ing cmdle*** 'New-SqlBackupEncryp***ionOp***ion'.
+2020-04-03T14:47:50.3126974Z ##[debug]Impor***ing cmdle*** 'New-SqlCreden***ial'.
+2020-04-03T14:47:50.3153484Z ##[debug]Impor***ing cmdle*** 'Remove-SqlCreden***ial'.
+2020-04-03T14:47:50.3180276Z ##[debug]Impor***ing cmdle*** 'Se***-SqlCreden***ial'.
+2020-04-03T14:47:50.3210388Z ##[debug]Impor***ing cmdle*** 'Expor***-SqlVulnerabili***yAssessmen***BaselineSe***'.
+2020-04-03T14:47:50.3240080Z ##[debug]Impor***ing cmdle*** 'Expor***-SqlVulnerabili***yAssessmen***Scan'.
+2020-04-03T14:47:50.3265824Z ##[debug]Impor***ing cmdle*** 'Impor***-SqlVulnerabili***yAssessmen***BaselineSe***'.
+2020-04-03T14:47:50.3291572Z ##[debug]Impor***ing cmdle*** 'Invoke-SqlVulnerabili***yAssessmen***Scan'.
+2020-04-03T14:47:50.3318960Z ##[debug]Impor***ing cmdle*** 'New-SqlVulnerabili***yAssessmen***BaselineSe***'.
+2020-04-03T14:47:50.3344418Z ##[debug]Impor***ing cmdle*** 'New-SqlVulnerabili***yAssessmen***Baseline'.
+2020-04-03T14:47:50.3375677Z ##[debug]Impor***ing cmdle*** 'Read-SqlXEven***'.
+2020-04-03T14:47:50.3478877Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\Microsof***.SqlServer.Managemen***.PSProvider.dll'.
+2020-04-03T14:47:50.5296004Z ##[debug]SQL Server WMI provider is no*** available on WIN-49E913L5ETU.
+2020-04-03T14:47:50.5330931Z ##[debug]InnerExcep***ion : Invalid namespace 
+2020-04-03T14:47:50.5478923Z ##[debug]Impor***ing cmdle*** 'Conver***-UrnToPa***h'.
+2020-04-03T14:47:50.5510884Z ##[debug]Impor***ing cmdle*** 'Conver***To-EncodedSqlName'.
+2020-04-03T14:47:50.5558849Z ##[debug]Impor***ing cmdle*** 'Conver***From-EncodedSqlName'.
+2020-04-03T14:47:50.5608849Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\Microsof***.AnalysisServices.PowerShell.Cmdle***s.dll'.
+2020-04-03T14:47:50.5893893Z ##[debug]Impor***ing cmdle*** 'Add-RoleMember'.
+2020-04-03T14:47:50.5925092Z ##[debug]Impor***ing cmdle*** 'Backup-ASDa***abase'.
+2020-04-03T14:47:50.6015157Z ##[debug]Impor***ing cmdle*** 'Invoke-ASCmd'.
+2020-04-03T14:47:50.6047960Z ##[debug]Impor***ing cmdle*** 'Invoke-ProcessCube'.
+2020-04-03T14:47:50.6075558Z ##[debug]Impor***ing cmdle*** 'Invoke-ProcessDimension'.
+2020-04-03T14:47:50.6105043Z ##[debug]Impor***ing cmdle*** 'Invoke-ProcessASDa***abase'.
+2020-04-03T14:47:50.6132994Z ##[debug]Impor***ing cmdle*** 'Invoke-ProcessTable'.
+2020-04-03T14:47:50.6163456Z ##[debug]Impor***ing cmdle*** 'Invoke-ProcessPar***i***ion'.
+2020-04-03T14:47:50.6206831Z ##[debug]Impor***ing cmdle*** 'Remove-RoleMember'.
+2020-04-03T14:47:50.6245106Z ##[debug]Impor***ing cmdle*** 'Res***ore-ASDa***abase'.
+2020-04-03T14:47:50.6293500Z ##[debug]Impor***ing cmdle*** 'New-Res***oreFolder'.
+2020-04-03T14:47:50.6395844Z ##[debug]Impor***ing cmdle*** 'New-Res***oreLoca***ion'.
+2020-04-03T14:47:50.6440488Z ##[debug]Impor***ing cmdle*** 'Merge-Par***i***ion'.
+2020-04-03T14:47:50.6479733Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\Microsof***.SqlServer.Assessmen***.Cmdle***s.dll'.
+2020-04-03T14:47:50.6609958Z ##[debug]Impor***ing cmdle*** 'Ge***-SqlAssessmen***I***em'.
+2020-04-03T14:47:50.6644543Z ##[debug]Impor***ing cmdle*** 'Invoke-SqlAssessmen***'.
+2020-04-03T14:47:50.6681792Z ##[debug]Loading module from pa***h 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\SqlServerPos***Scrip***.ps1'.
+2020-04-03T14:47:50.6802022Z ##[debug]Do***-sourcing ***he scrip*** file 'C:\Program Files\WindowsPowerShell\Modules\SQLServer\21.1.18218\SqlServerPos***Scrip***.ps1'.
+2020-04-03T14:47:51.0318817Z ##[debug]Expor***ing func***ion 'Invoke-SqlNo***ebook'.
+2020-04-03T14:47:51.0343790Z ##[debug]Expor***ing func***ion 'SQLSERVER:'.
+2020-04-03T14:47:51.0374691Z ##[debug]Expor***ing cmdle*** 'Add-SqlColumnEncryp***ionKeyValue'.
+2020-04-03T14:47:51.0400385Z ##[debug]Expor***ing cmdle*** 'Comple***e-SqlColumnMas***erKeyRo***a***ion'.
+2020-04-03T14:47:51.0426970Z ##[debug]Expor***ing cmdle*** 'Ge***-SqlColumnEncryp***ionKey'.
+2020-04-03T14:47:51.0452039Z ##[debug]Expor***ing cmdle*** 'Ge***-SqlColumnMas***erKey'.
+2020-04-03T14:47:51.0476656Z ##[debug]Expor***ing cmdle*** 'Add-SqlAzureAu***hen***ica***ionCon***ex***'.
+2020-04-03T14:47:51.0501165Z ##[debug]Expor***ing cmdle*** 'New-SqlColumnEncryp***ionKeyEncryp***edValue'.
+2020-04-03T14:47:51.0542657Z ##[debug]Expor***ing cmdle*** 'New-SqlColumnEncryp***ionSe***ings'.
+2020-04-03T14:47:51.0566992Z ##[debug]Expor***ing cmdle*** 'New-SqlColumnMas***erKeySe***ings'.
+2020-04-03T14:47:51.0594722Z ##[debug]Expor***ing cmdle*** 'New-SqlCspColumnMas***erKeySe***ings'.

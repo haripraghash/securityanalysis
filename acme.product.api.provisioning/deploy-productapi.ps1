@@ -120,7 +120,7 @@ function Main() {
 	Write-Host "##vso[task.setvariable variable=SqlServerName;isOutput=true]$SqlServerName"
 	Write-Host "##vso[task.setvariable variable=SqlServerDbName;isOutput=true]$SqlServerDbName"
 	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLogin;isOutput=true]$sqlServerAdminLogin"
-	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword;issecret=true;isOutput=true]$sqlServerAdminLoginPasswordPlain"
+	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword;isOutput=true]$sqlServerAdminLoginPasswordPlain"
 }
 
 $SqlServerAdminLogin = "productadmin"
