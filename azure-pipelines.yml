@@ -31,6 +31,7 @@ stages:
         azureSubscription: "securityanalysis"
         scriptType: inlineScript
         inline: Connect-AzAccount -Tenant $(tenantid)
+        azurePowerShellVersion: LatestVersion
         # scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
         # errorActionPreference: continue
         # #failOnStandardError: true
