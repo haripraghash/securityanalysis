@@ -22,20 +22,15 @@ stages:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
     steps:
-    # - script: |
-    #     sudo /usr/bin/pwsh -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -File "$(Build.Repository.LocalPath)/acme.product.api.provisioning/install-az-module.ps1"
-    #   displayName: "Install Az Modules"
     - task: AzurePowerShell@4
       displayName: "Run powershell script to provision azure infra"
       inputs:
         azureSubscription: "securityanalysis"
-        scriptType: inlineScript
-        inline: get-azcontext
         azurePowerShellVersion: LatestVersion
-        # scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
-        # errorActionPreference: continue
-        # #failOnStandardError: true
-        # scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+        errorActionPreference: stop
+        failOnStandardError: true
+        scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
       # - powershell: |
       #       $User = "$(aadAdmin)" 
       #       $tenant = "$(tenantid)"
