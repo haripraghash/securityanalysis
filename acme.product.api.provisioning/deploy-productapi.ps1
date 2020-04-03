@@ -94,7 +94,7 @@ function Main() {
 
 	$BSTR1 = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sqlServerAdminLoginPassword)
 	$sqlServerAdminLoginPasswordPlain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR1)
-
+    $sqlServerAdminLoginPasswordPlain = ConvertFrom-Securestring $sqlServerAdminLoginPasswordPlain
 	
 	# set application settings for web api
 	$apiAppSettings = @{
@@ -125,5 +125,5 @@ function Main() {
 
 $SqlServerAdminLogin = "productadmin"
 $SqlServerAdminLoginPassword = Generate-Password
-Write-Host $sqlServerAdminLoginPassword
+Write-Host $sqlServerAdminLoginPasswordPlain
 Main
