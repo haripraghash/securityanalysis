@@ -65,14 +65,22 @@ stages:
               ./acme.product.services/acme.product.services.csproj
               ./acme.product.web.api/acme.product.web.api.csproj
               ./acme.product.services.unit.tests/acme.product.unit.tests.csproj
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish with $(buildConfiguration) configuration'
+    - task: VSBuild@1
+      displayName: Build Solution
       inputs:
-       command: publish
-       publishWebProjects: false
-       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
-       zipAfterPublish: false
-       modifyOutputPath: true
+        solution: '**\*.sln' 
+        vsVersion: 'latest'
+        msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
+        configuration: $(BuildConfiguration)
+                  
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet publish with $(buildConfiguration) configuration'
+    #   inputs:
+    #    command: publish
+    #    publishWebProjects: false
+    #    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
+    #    zipAfterPublish: false
+    #    modifyOutputPath: true
        
     - task: CopyFiles@2
       displayName: Copy dacpac to artifacts
