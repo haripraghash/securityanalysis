@@ -40,7 +40,7 @@ stages:
     #dependsOn: provisionazureinfrastructure
     #condition: succeeded()
     variables:
-      sqlServerName: 'acmeproducteundevsql.database.windows.net'
+      sqlServerName: 'acmeproducteundevsql'
       sqlServerDbName: 'productdb'
       sqlServerUserName: 'productadmin'
       sqlServerPassword: 'test'
