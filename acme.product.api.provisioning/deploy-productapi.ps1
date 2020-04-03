@@ -61,7 +61,7 @@ function CreateResourceGroup() {
 	$parameters['appServicePlanSKUTier'] = $AppServicePlanSKUTier
 	$parameters['appServicePlanSKUName'] = $AppServicePlanSKUName
 	 Write-Host ($parameters | Out-String)
-	.\Deploy-AzureResourcegroup.ps1 `
+	./Deploy-AzureResourcegroup.ps1 `
 	    -resourcegrouplocation $ResourceGroupLocation `
 		-resourcegroupname $ResourceGroupName `
 		-uploadartifacts `
