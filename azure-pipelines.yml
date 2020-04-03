@@ -26,6 +26,7 @@ stages:
     
     steps:
     - task: AzurePowerShell@4
+      name: deployazureinfra
       displayName: "Run powershell script to provision azure infra"
       inputs:
         azureSubscription: "securityanalysis"
@@ -38,6 +39,11 @@ stages:
     displayName: "Deploy Azure Sql Schema"
     dependsOn: provisionazureinfrastructure
     condition: succeeded()
+    variables:
+      sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
+      sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
+      sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
+      sqlServerPassword: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLoginPassword'] ]
     pool:
       vmImage: windows-latest
     steps:
@@ -82,10 +88,10 @@ stages:
       condition: 
       inputs:
         azureSubscription: "securityanalysis"
-        serverName: "$(SqlServerName).database.windows.net"
-        databaseName: $(SqlServerDbName)
-        sqlUsername: $(SqlServerAppAdminLogin)
-        sqlPassword: $(SqlServerAppAdminLoginPassword)
+        serverName: "$(sqlServerName).database.windows.net"
+        databaseName: $(sqlServerDbName)
+        sqlUsername: $(sqlServerUserName)
+        sqlPassword: $(sqlServerPassword)
         deploymentAction: 'Publish'
         dacpacFile: $(build.artifactstagingdirectory)/datamodel/acme.product.database.dacpac
           
