@@ -34,8 +34,8 @@ stages:
   #       scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
   - job: deployazuresqlschema
     displayName: "Deploy Azure Sql Schema"
-    dependsOn: provisionazureinfrastructure
-    condition: succeeded()
+    #dependsOn: provisionazureinfrastructure
+    #condition: succeeded()
     pool:
       vmImage: windows-latest
     steps:
