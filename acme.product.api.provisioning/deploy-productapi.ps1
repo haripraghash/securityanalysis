@@ -73,6 +73,10 @@ function CreateResourceGroup() {
 }
 
 function Main() {
+	Write-Host "sql pass word $sqlServerAdminLoginPassword"
+	$BSTR1 = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sqlServerAdminLoginPassword)
+	$sqlServerAdminLoginPasswordPlain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR1)
+	Write-Host "sql pass word plan $sqlServerAdminLoginPasswordPlain"
 	$deployment = CreateResourceGroup
 	$deployment
 
