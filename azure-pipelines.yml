@@ -51,15 +51,15 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
-    - task: DotNetCoreInstaller@0
-      displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
-      inputs:
-        packageType: sdk
-        version: $(dotnetSdkVersion)
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore'
-      inputs:
-         command: restore
+    # - task: DotNetCoreInstaller@0
+    #   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+    #   inputs:
+    #     packageType: sdk
+    #     version: $(dotnetSdkVersion)
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'Restore'
+    #   inputs:
+    #      command: restore
 
     - task: VSBuild@1
       displayName: Build Solution
