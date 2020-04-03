@@ -47,6 +47,22 @@ stages:
         packageType: sdk
         version: $(dotnetSdkVersion)
     - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+         command: restore
+         #publishWebProjects: false
+         #arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
+         #zipAfterPublish: false
+         #modifyOutputPath: true
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+            command: build
+            #publishWebProjects: false
+            #arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapps'
+            #zipAfterPublish: false
+            #modifyOutputPath: true
+    - task: DotNetCoreCLI@2
       displayName: 'dotnet publish with $(buildConfiguration) configuration'
       inputs:
        command: publish
