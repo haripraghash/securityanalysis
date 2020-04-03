@@ -9,6 +9,8 @@ variables:
   - group: azuresubscription
   - name: buildConfiguration
     value: 'Release'
+  - name:  dotnetSdkVersion
+    value: '3.1.101'
 
 stages:
 - stage: dev
@@ -39,6 +41,11 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+      inputs:
+        packageType: sdk
+        version: $(dotnetSdkVersion)
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish with $(buildConfiguration) configuration'
       inputs:
