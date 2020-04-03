@@ -51,15 +51,15 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
-    # - task: DotNetCoreInstaller@0
-    #   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
-    #   inputs:
-    #     packageType: sdk
-    #     version: $(dotnetSdkVersion)
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'Restore'
-    #   inputs:
-    #      command: restore
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+      inputs:
+        packageType: sdk
+        version: $(dotnetSdkVersion)
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+         command: restore
 
     - task: VSBuild@1
       displayName: Build Solution
@@ -78,20 +78,20 @@ stages:
     #    zipAfterPublish: false
     #    modifyOutputPath: true
        
-    - task: CopyFiles@2
-      displayName: Copy dacpac to artifacts
-      inputs:
-        SourceFolder: acme.product.database
-        Contents: |
-           bin/$(BuildConfiguration)/acme.product.database.dacpac
-        TargetFolder: '$(build.artifactstagingdirectory)/datamodel'
-        flattenFolders: true
-    - task: Bash@3
-      displayName: "List contents"
-      inputs:
-        script: |
-          cd $(build.artifactstagingdirectory)\datamodel 
-          ll
+    # - task: CopyFiles@2
+    #   displayName: Copy dacpac to artifacts
+    #   inputs:
+    #     SourceFolder: acme.product.database
+    #     Contents: |
+    #        bin/$(BuildConfiguration)/acme.product.database.dacpac
+    #     TargetFolder: '$(build.artifactstagingdirectory)/datamodel'
+    #     flattenFolders: true
+    # - task: Bash@3
+    #   displayName: "List contents"
+    #   inputs:
+    #     script: |
+    #       cd $(build.artifactstagingdirectory)\datamodel 
+    #       ll
 
     - task: SqlAzureDacpacDeployment@1
       displayName: "Deploy Azure Sql Database Schema"
@@ -103,7 +103,7 @@ stages:
         sqlUsername: $(sqlServerUserName)
         sqlPassword: $(sqlServerPassword)
         deploymentAction: 'Publish'
-        dacpacFile: $(build.artifactstagingdirectory)/datamodel/acme.product.database.dacpac
+        dacpacFile: .\acme.product.database\bin\$(buildConfiguration)\acme.product.database.dacpac
           
 
   
