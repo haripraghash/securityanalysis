@@ -38,7 +38,7 @@ stages:
     - task: VSBuild@1
       displayName: Build Solution
       inputs:
-        solution: '**\acme.product.database.dtproj' 
+        solution: '**\acme.product.database.sqlproj' 
         vsVersion: 'latest'
         msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
         configuration: $(BuildConfiguration)
