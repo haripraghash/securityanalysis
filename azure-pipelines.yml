@@ -19,7 +19,7 @@ stages:
     ENV: "dev"
     REGION: "eastus"
   pool:
-   vmImage: 'ubuntu-latest'
+   vmImage: 'windows-latest'
   jobs:
   - job: provisionazureinfrastructure
     displayName: "Provision Azure Infrastructure"
@@ -35,48 +35,98 @@ stages:
         errorActionPreference: stop
         failOnStandardError: true
         scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
-  - job: deployazuresqlschema
-    displayName: "Deploy Azure Sql Schema"
-    dependsOn: provisionazureinfrastructure
-    condition: succeeded()
-    variables:
-      sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
-      sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
-      sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
-      sqlServerPassword: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLoginPassword'] ]
-    pool:
-      vmImage: windows-latest
-    steps:
-    - task: DotNetCoreInstaller@0
-      displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
-      inputs:
-        packageType: sdk
-        version: $(dotnetSdkVersion)
-    - task: DotNetCoreCLI@2
-      displayName: 'Restore'
-      inputs:
-         command: restore
-
     - task: VSBuild@1
       displayName: Build Solution
       inputs:
-        solution: '**\*.sln' 
+        solution: '**\acme.product.database.csproj' 
         vsVersion: 'latest'
         msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
         configuration: $(BuildConfiguration)
-
+  
     - task: SqlAzureDacpacDeployment@1
       displayName: "Deploy Azure Sql Database Schema"
       condition: 
       inputs:
         azureSubscription: "securityanalysis"
-        serverName: "$(sqlServerName).database.windows.net"
-        databaseName: $(sqlServerDbName)
-        sqlUsername: $(sqlServerUserName)
-        sqlPassword: $(sqlServerPassword)
+        serverName: "$(SqlServerName).database.windows.net"
+        databaseName: $(SqlServerDbName)
+        sqlUsername: $(SqlServerAppAdminLogin)
+        sqlPassword: $(SqlServerAppAdminLoginPassword)
         deploymentAction: 'Publish'
         dacpacFile: .\acme.product.database\bin\$(buildConfiguration)\acme.product.database.dacpac
-          
+  # - job: deployazuresqlschema
+  #   displayName: "Deploy Azure Sql Schema"
+  #   dependsOn: provisionazureinfrastructure
+  #   condition: succeeded()
+  #   variables:
+  #     sqlServerName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerName'] ]
+  #     sqlServerDbName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerDbName'] ]
+  #     sqlServerUserName: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLogin'] ]
+  #     sqlServerPassword: $[ dependencies.provisionazureinfrastructure.outputs['deployazureinfra.SqlServerAppAdminLoginPassword'] ]
+  #   steps:
+  #   - task: DotNetCoreInstaller@0
+  #     displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+  #     inputs:
+  #       packageType: sdk
+  #       version: $(dotnetSdkVersion)
+  #   - task: DotNetCoreCLI@2
+  #     displayName: 'Restore'
+  #     inputs:
+  #        command: restore
+
+  #   - task: VSBuild@1
+  #     displayName: Build Solution
+  #     inputs:
+  #       solution: '**\acme.product.database.csproj' 
+  #       vsVersion: 'latest'
+  #       msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
+  #       configuration: $(BuildConfiguration)
+
+  #   - task: SqlAzureDacpacDeployment@1
+  #     displayName: "Deploy Azure Sql Database Schema"
+  #     condition: 
+  #     inputs:
+  #       azureSubscription: "securityanalysis"
+  #       serverName: "$(sqlServerName).database.windows.net"
+  #       databaseName: $(sqlServerDbName)
+  #       sqlUsername: $(sqlServerUserName)
+  #       sqlPassword: $(sqlServerPassword)
+  #       deploymentAction: 'Publish'
+  #       dacpacFile: .\acme.product.database\bin\$(buildConfiguration)\acme.product.database.dacpac
+  # - job: buildandanalyzesource
+  #   displayName: 'Build and Analyze source'
+  #   pool:
+  #     vmImage: ubuntu-latest
+  #   steps:
+  #   - task: SonarCloudPrepare@1
+  #     inputs:
+  #       SonarCloud: 'sonar-haripraghash'
+  #       organization: 'haripraghashdevops'
+  #       scannerMode: 'MSBuild'
+  #       projectKey: 'haripraghashdevops'
+  #       projectName: 'securityanalysis'
+  #       extraProperties: |
+  #         # Additional properties that will be passed to the scanner, 
+  #         # Put one key=value per line, example:
+  #         sonar.exclusions=**/*.bin
+  #         sonar.branch.name=$(Build.SourceBranchName)
+  #         - task: DotNetCoreInstaller@0
+  #         displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+  #         inputs:
+  #           packageType: sdk
+  #           version: $(dotnetSdkVersion)
+  #   - task: DotNetCoreCLI@2
+  #     displayName: 'Restore'
+  #     inputs:
+  #       command: restore
+    
+  #   - task: VSBuild@1
+  #     displayName: Build Solution
+  #     inputs:
+  #       solution: '**\*.sln' 
+  #       vsVersion: 'latest'
+  #       msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
+  #       configuration: $(BuildConfiguration)
 
   
   
