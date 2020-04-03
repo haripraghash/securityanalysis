@@ -85,7 +85,9 @@ stages:
     - task: Bash@3
       displayName: "List contents"
       inputs:
-        script: cd $(build.artifactstagingdirectory)/datamodel && ll
+        script: |
+          cd $(build.artifactstagingdirectory)/datamodel 
+          ll
 
     - task: SqlAzureDacpacDeployment@1
       displayName: "Deploy Azure Sql Database Schema"
