@@ -90,7 +90,7 @@ stages:
       displayName: "List contents"
       inputs:
         script: |
-          cd $(build.artifactstagingdirectory)/datamodel 
+          cd $(build.artifactstagingdirectory)\datamodel 
           ll
 
     - task: SqlAzureDacpacDeployment@1
