@@ -56,14 +56,17 @@ stages:
     #     errorActionPreference: stop
     #     failOnStandardError: true
     #     scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
-    - task: VSBuild@1
-      displayName: Build Solution
+    # - task: VSBuild@1
+    #   displayName: Build Solution
+    #   inputs:
+    #     solution: '**\acme.product.web.api.sln' 
+    #     vsVersion: '16.1'
+    #     msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:CodeAnalysisRuleset=""'          
+    #     configuration: $(BuildConfiguration)
+    - task: DotNetCoreCLI@2
+      displayName: 'Build'
       inputs:
-        solution: '**\acme.product.web.api.sln' 
-        vsVersion: '16.1'
-        msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:CodeAnalysisRuleset=""'          
-        configuration: $(BuildConfiguration)
-    
+        command: build
     # - task: SonarCloudAnalyze@1 
     #   displayName: 'Run Code Analysis on SonarCloud' 
 
