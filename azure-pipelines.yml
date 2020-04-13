@@ -61,9 +61,8 @@ stages:
       inputs:
         solution: '**\acme.product.web.api.sln' 
         vsVersion: 'latest'
-        msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:ErrorLog=RoslynIssues.json'          
+        msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:CodeAnalysisRuleset=""'          
         configuration: $(BuildConfiguration)
-        restoreNugetPackages: true
     
     - task: SonarCloudAnalyze@1 
       displayName: 'Run Code Analysis on SonarCloud' 
