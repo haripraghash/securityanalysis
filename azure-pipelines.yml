@@ -25,18 +25,18 @@ stages:
     displayName: "Provision Azure Infrastructure"
     
     steps:
-    - task: SonarCloudPrepare@1
-      inputs:
-        SonarCloud: 'sonar-haripraghash'
-        organization: 'haripraghashdevops'
-        scannerMode: 'MSBuild'
-        projectKey: 'haripraghashdevops'
-        projectName: 'securityanalysis'
-        extraProperties: |
-          # Additional properties that will be passed to the scanner, 
-          # Put one key=value per line, example:
-          sonar.exclusions=**/*.bin
-          sonar.branch.name=$(Build.SourceBranchName)
+    # - task: SonarCloudPrepare@1
+    #   inputs:
+    #     SonarCloud: 'sonar-haripraghash'
+    #     organization: 'haripraghashdevops'
+    #     scannerMode: 'MSBuild'
+    #     projectKey: 'haripraghashdevops'
+    #     projectName: 'securityanalysis'
+    #     extraProperties: |
+    #       # Additional properties that will be passed to the scanner, 
+    #       # Put one key=value per line, example:
+    #       sonar.exclusions=**/*.bin
+    #       sonar.branch.name=$(Build.SourceBranchName)
     - task: DotNetCoreInstaller@0
       displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
       inputs:
@@ -60,15 +60,15 @@ stages:
       displayName: Build Solution
       inputs:
         solution: '**\acme.product.web.api.sln' 
-        vsVersion: 'latest'
+        vsVersion: '16.1'
         msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:CodeAnalysisRuleset=""'          
         configuration: $(BuildConfiguration)
     
-    - task: SonarCloudAnalyze@1 
-      displayName: 'Run Code Analysis on SonarCloud' 
+    # - task: SonarCloudAnalyze@1 
+    #   displayName: 'Run Code Analysis on SonarCloud' 
 
-    - task: SonarCloudPublish@1 
-      displayName: 'Publish Quality Gate Result on SonarCloud'
+    # - task: SonarCloudPublish@1 
+    #   displayName: 'Publish Quality Gate Result on SonarCloud'
 
     # - task: SqlAzureDacpacDeployment@1
     #   displayName: "Deploy Azure Sql Database Schema"
