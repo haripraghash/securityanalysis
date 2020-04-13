@@ -14,6 +14,8 @@ namespace acme.product.web.api.Controllers
     {
         private readonly IProductService productService;
 
+        private const string SQL_PASSWORD = "Password";
+
         public ProductsController(IProductService productService)
         {
             this.productService = productService;
