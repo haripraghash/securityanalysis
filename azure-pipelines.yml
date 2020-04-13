@@ -55,8 +55,8 @@ stages:
         msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
         configuration: $(BuildConfiguration)
     
-    - task: SonarCloudAnalyze@1 
-      displayName: 'Run Code Analysis on SonarCloud' 
+    # - task: SonarCloudAnalyze@1 
+    #   displayName: 'Run Code Analysis on SonarCloud' 
 
     - task: SonarCloudPublish@1 
       displayName: 'Publish Quality Gate Result on SonarCloud'
