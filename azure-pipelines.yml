@@ -25,6 +25,18 @@ stages:
     displayName: "Provision Azure Infrastructure"
     
     steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'sonar-haripraghash'
+        organization: 'haripraghashdevops'
+        scannerMode: 'MSBuild'
+        projectKey: 'haripraghashdevops'
+        projectName: 'securityanalysis'
+        extraProperties: |
+          # Additional properties that will be passed to the scanner, 
+          # Put one key=value per line, example:
+          sonar.exclusions=**/*.bin
+          sonar.branch.name=$(Build.SourceBranchName)
     - task: AzurePowerShell@4
       name: deployazureinfra
       displayName: "Run powershell script to provision azure infra"
@@ -42,7 +54,13 @@ stages:
         vsVersion: 'latest'
         msbuildArgs: '/t:Clean,Build /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\webapps"'          
         configuration: $(BuildConfiguration)
-  
+    
+    - task: SonarCloudAnalyze@1 
+      displayName: 'Run Code Analysis on SonarCloud' 
+
+    - task: SonarCloudPublish@1 
+      displayName: 'Publish Quality Gate Result on SonarCloud'
+      
     - task: SqlAzureDacpacDeployment@1
       displayName: "Deploy Azure Sql Database Schema"
       condition: 
