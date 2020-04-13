@@ -37,16 +37,25 @@ stages:
           # Put one key=value per line, example:
           sonar.exclusions=**/*.bin
           sonar.branch.name=$(Build.SourceBranchName)
-    - task: AzurePowerShell@4
-      name: deployazureinfra
-      displayName: "Run powershell script to provision azure infra"
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
       inputs:
-        azureSubscription: "securityanalysis"
-        azurePowerShellVersion: LatestVersion
-        scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
-        errorActionPreference: stop
-        failOnStandardError: true
-        scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
+        packageType: sdk
+        version: $(dotnetSdkVersion)
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+          command: restore
+    # - task: AzurePowerShell@4
+    #   name: deployazureinfra
+    #   displayName: "Run powershell script to provision azure infra"
+    #   inputs:
+    #     azureSubscription: "securityanalysis"
+    #     azurePowerShellVersion: LatestVersion
+    #     scriptPath: ./acme.product.api.provisioning/deploy-productapi.ps1 
+    #     errorActionPreference: stop
+    #     failOnStandardError: true
+    #     scriptArguments: -AadAdmin $(aadAdmin) -AadPassword (ConvertTo-SecureString $(aadPassword) -AsPlainText -Force) -ResourceGroupLocation $(REGION)  -environment $(ENV)
     - task: VSBuild@1
       displayName: Build Solution
       inputs:
@@ -61,17 +70,17 @@ stages:
     - task: SonarCloudPublish@1 
       displayName: 'Publish Quality Gate Result on SonarCloud'
 
-    - task: SqlAzureDacpacDeployment@1
-      displayName: "Deploy Azure Sql Database Schema"
-      condition: 
-      inputs:
-        azureSubscription: "securityanalysis"
-        serverName: "$(SqlServerName).database.windows.net"
-        databaseName: $(SqlServerDbName)
-        sqlUsername: $(SqlServerAppAdminLogin)
-        sqlPassword: $(SqlServerAppAdminLoginPassword)
-        deploymentAction: 'Publish'
-        dacpacFile: .\acme.product.database\bin\$(buildConfiguration)\acme.product.database.dacpac
+    # - task: SqlAzureDacpacDeployment@1
+    #   displayName: "Deploy Azure Sql Database Schema"
+    #   condition: 
+    #   inputs:
+    #     azureSubscription: "securityanalysis"
+    #     serverName: "$(SqlServerName).database.windows.net"
+    #     databaseName: $(SqlServerDbName)
+    #     sqlUsername: $(SqlServerAppAdminLogin)
+    #     sqlPassword: $(SqlServerAppAdminLoginPassword)
+    #     deploymentAction: 'Publish'
+    #     dacpacFile: .\acme.product.database\bin\$(buildConfiguration)\acme.product.database.dacpac
   # - job: deployazuresqlschema
   #   displayName: "Deploy Azure Sql Schema"
   #   dependsOn: provisionazureinfrastructure
