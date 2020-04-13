@@ -113,14 +113,14 @@ function Main() {
 	-WebAppName $webApiName `
 	-AppSettings $apiAppSettings
 	
-	Write-Host "##vso[task.setvariable variable=WebApiAppServiceName;isOutput=true]$webApiName"
-	Write-Host "##vso[task.setvariable variable=ResourceGroupName;isOutput=true]$ResourceGroupName"
-	Write-Host "##vso[task.setvariable variable=HomePageApiWebAppUrl;isOutput=true]$productApiWebAppUrl"
+	Write-Host "##vso[task.setvariable variable=WebApiAppServiceName]$webApiName"
+	Write-Host "##vso[task.setvariable variable=ResourceGroupName]$ResourceGroupName"
+	Write-Host "##vso[task.setvariable variable=HomePageApiWebAppUrl]$productApiWebAppUrl"
 
-	Write-Host "##vso[task.setvariable variable=SqlServerName;isOutput=true]$SqlServerName"
-	Write-Host "##vso[task.setvariable variable=SqlServerDbName;isOutput=true]$SqlServerDbName"
-	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLogin;isOutput=true]$sqlServerAdminLogin"
-	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword;isOutput=true]test#123test"
+	Write-Host "##vso[task.setvariable variable=SqlServerName]$SqlServerName"
+	Write-Host "##vso[task.setvariable variable=SqlServerDbName]$SqlServerDbName"
+	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLogin]$sqlServerAdminLogin"
+	Write-Host "##vso[task.setvariable variable=SqlServerAppAdminLoginPassword]test#123test"
 }
 
 $SqlServerAdminLogin = "productadmin"
