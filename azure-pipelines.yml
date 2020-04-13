@@ -42,10 +42,10 @@ stages:
       inputs:
         packageType: sdk
         version: $(dotnetSdkVersion)
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'Restore'
-    #   inputs:
-    #       command: restore
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+          command: restore
     # - task: AzurePowerShell@4
     #   name: deployazureinfra
     #   displayName: "Run powershell script to provision azure infra"
