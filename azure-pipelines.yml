@@ -61,7 +61,7 @@ stages:
       inputs:
         solution: '**\acme.product.web.api.sln' 
         vsVersion: 'latest'
-        msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true"'          
+        msbuildArgs: '/t:Clean,Build /p:SkipInvalidConfigurations=true /p:ErrorLog=RoslynIssues.json'          
         configuration: $(BuildConfiguration)
         restoreNugetPackages: true
     
